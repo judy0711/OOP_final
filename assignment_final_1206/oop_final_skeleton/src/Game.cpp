@@ -29,6 +29,15 @@ void Game::loadMap(string filePath) {
         exit(1);
     }
     int width, height;
+    // Did you write this line of code or the teacher?
+    // All of the codes here are written by the teacher. 
+    // ohh i see what they did now
+    // so there is a txt file given. And we have to read the text from the file using infile and getline
+    // ok
+    // Never did much file manipulation in C++, doing a quick bit of research
+    // Ok, I will try first.
+    // ok
+
     mapFile >> width >> height;
     // map should be surrounded by walls, so we add 2 to the width and height
     map = new Grid2D<char>(width + 2, height + 2, ' ');
@@ -44,6 +53,158 @@ void Game::loadMap(string filePath) {
      */
     // TODO: write your code here
 
+    //use infile and getline
+
+    // Where did this come from?!
+
+    // This was the code that I tried. But it didn't work out.
+    // ahhh
+    // Well first thing I see, you're only getting two of the walls
+    // You're getting the top and left wall, but not the bottom and right wall
+    // #####
+    // #...#
+    // #...#
+    // #...#
+    // #####
+    // zero indexing, so not +2
+    // width+2 is the new width, but the last index is not width+2
+    // Yeah, there you go
+
+
+    // Since x is always x+1, you can rewrite the for loop so it starts at 1 instead 
+    // yeah, you want to look at x+1 too, right?
+    // one second,yes
+    // This for loop will not access width+1
+    // wait the i is... one sec
+    
+    // i is for reading the characters for each line of text
+    // And that won't have the borders, right?
+    // No, the borders aren't part of the text
+    // I apologize, you do want to start at 0
+
+    // You're reading the line for each x? That's not...
+    // You're reading the line for each row and column, instead of just each row
+    // I thought the for loop... wait a second...
+    // Ah, yeah, it should be get rid of
+
+    // There's also a more efficient way of writing the border generator
+    // yep. Save the getline and i while loop, get rid of the other loops
+    // I have the getline loop in my clipboard for later. First we rewire the border generator
+    // Ok.
+    // Do I have permission to delete the loops? yeah
+
+    // Ok, before, for the border generator, you checked every tile (I'm going to call them tiles) in the grid.
+    // We already know where the border is going to be, so we can just set them directly without any if statements
+    // Can you think of how?
+    // Yes, but not only outer borders. We also have to take into account the walls given from the text.
+    // Anything with a "#"             
+    // Yes, we'll get those later. First, we're getting the outer borders, which aren't in the text file
+    // Ok! Let me think for a second. 
+    // I can't think of any other than the for loop..
+    
+    // we do want for loops, we just dont need if statements.
+    // we just need to tell the for loop to work on a specific area
+    // naming them x or y might make it clearer
+    // lmk if you need help
+    // can we use nested for loops? lol sorry
+    // You can, but the efficient way doesn't need to.
+    // I can show you part of it if it'll help
+    // yes please
+    
+
+    for (int x = 0; x < width+2; x++) {
+        // Top wall
+        map.set(x, 0, '#');
+        // Can't do left wall in this loop. Can do bottom wall
+        // Bottom wall
+        // Not width. What coordinate do all the tiles on the bottom wall share?
+        // #####
+        // #...#
+        // #...#
+        // #...#
+        // #####
+        // 
+        // Example: original width is 5
+        // #####
+        // We add 2
+        // #######
+        // indexes:
+        // #######
+        // 0123456
+        // Last index is original width + 1
+        // Does that make sense?
+        // yes
+        map.set(x, height + 1, '#')// that is not a char. there you go. Now try the left and right walls
+    }
+
+// what is the y index for the highlighted wall
+    // #####
+    // #...#
+    // #...#
+    // #...#
+    // #####
+
+    // 0, like this won't the walls be overlapped? Ok! So it will still work the same even though it is set twice?
+    // yes
+    // Oh i see. That's pretty smart. It won't break anything, it'll just set it twice. Good job, that'll save some speed
+    // Yes, but your way is more efficient
+    // list = ['a', 'b', 'c']
+    // list[1] = 'z'
+    // list is now ['a', 'z', 'c']
+    // list[1] = 'z'
+    // list is still ['a', 'z', 'c']
+    // Overlap won't break anything. But you were right to not do it, because your method is faster
+
+    // Example: original width is 5
+    // #####
+    // We add 2
+    // #######
+    // indexes:
+    // #######
+    // 0123456
+    // We're ignoring 0 and 6. So last index we want is 5. So we say while it's < width, or in this case, height
+    // 
+    for(int y = 1; y < height; y++){
+        //left wall
+        map.set(0,y,'#');// not a char
+
+        //Right wall
+        map.set(width + 1, y, '#'); // perfect!
+    }
+
+    // going to paste the code from earlier
+    /*string line;
+    getline(mapFile, line);
+
+    
+    for (int i = 0; i < width; i++)
+    {
+        map->set(x + 1, y + 1, line[i]);
+
+        // positions of the goal should be stored to goal x and goal y
+        if (line[i] == "G")
+        {
+            goalX = x + 1;
+            goalY = y + 1;
+        }
+        else if (line[i] == "H")
+        {
+            enemies[y][x] = new HorizontalEnemy(y + 1, x + 1, 0); // what are the 0s at the end for?
+            // I think I will delete this code first. Because the enemy file has to be written first. 
+            // Ok. It's mostly correct, so you could comment it out
+        }
+        else if (line[i] == "V")
+        {
+            enemies[y][x] = new VerticalEnemy(y + 1, x + 1, 0);
+        }
+        else if (line[i] == "S")
+        {
+            enemies[y][x] = new StandingEnemy(y + 1, x + 1, 0);
+        }
+        
+    }
+    */
+    //-------------------------------------------------------------
     mapFile.close();
 
     // TODO: dummy codes to make the codes working. Remove here and implement your own code.
