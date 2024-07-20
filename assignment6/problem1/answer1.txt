@@ -1,0 +1,30 @@
+====== Flight Schedule (Incheon) ======
+[departure]
+AA298 ICN 0900 LAX 1200 (American)
+
+
+[arrival]
+OZ365 LAX 1000 ICN 0800 (Asiana)
+BA110 LHR 1800 ICN 0840 (British)
+
+
+====== Flight Schedule (Incheon) ======
+[departure]
+AA298 ICN 0900 LAX 1200 (American)
+
+
+[arrival]
+BA110 LHR 1800 ICN 0840 (British)
+OZ365 LAX 0900 ICN 2350 (Asiana)
+
+
+====== Flight Schedule (LA) ======
+[departure]
+OZ365 LAX 0900 ICN 2350 (Asiana)
+
+
+[arrival]
+AA298 ICN 0900 LAX 1200 (American)
+
+
+deleted AA298
